@@ -6,6 +6,7 @@ const food_btn = document.getElementById('food_btn');
 const meme_btn = document.getElementById('meme_btn');
 const joke_btn = document.getElementById('joke_btn');
 const animeQuote_btn = document.getElementById('animeQuote_btn');
+const messagesList = document.getElementById('messagesList');
 
 const cat_result = document.getElementById('cat_result');
 const dog_result = document.getElementById('dog_result');
@@ -109,3 +110,9 @@ function getRandomAnimeQuote() {
     // animeQuote_result.innerHTML = data.quote;
   })
 }
+
+function chatImg() {
+  const img = `<img src="https://picsum.photos/150/225" alt="123">`
+  messagesList.innerHTML = img;
+}
+

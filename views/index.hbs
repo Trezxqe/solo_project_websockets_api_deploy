@@ -101,8 +101,15 @@
   socket.on('chat:newMessage', (fullMessage) => {
     const p = document.createElement('p');
     p.innerHTML = fullMessage;
+    console.log(fullMessage.split('<br /> ')[1]);
+    if(fullMessage.split('<br /> ')[1] == 'image') {
+      chatImg();
+      p.classList.add('mText')
+      document.getElementById('messagesList').prepend(p);
+    } else {
     p.classList.add('mText')
     document.getElementById('messagesList').prepend(p);
+    }
   });
 
   document.getElementById('messageForm').addEventListener('submit', (e) => {
