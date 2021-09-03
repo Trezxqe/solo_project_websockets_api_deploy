@@ -9,7 +9,7 @@ const httpServer = http.createServer(app);
 const io = new socketIOServer(httpServer);
 
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 app.locals.title = 'Живность';
 
 app.set('view engine', 'hbs');
