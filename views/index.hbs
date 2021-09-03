@@ -1,0 +1,114 @@
+<div class="results">
+  <div id="cat_result" class="result">
+    <p>Random Cat Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="cat_btn">Get Cat</button>
+  </div>
+</div>
+<div class="results">
+  <div id="dog_result" class="result">
+    <p>Random Dog Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="dog_btn">Get Dog</button>
+  </div>
+</div>
+<div class="results">
+  <div id="duck_result" class="result">
+    <p>Random Duck Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="duck_btn">Get Duck</button>
+  </div>
+</div>
+<div class="results">
+  <div id="fox_result" class="result">
+    <p>Random Fox Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="fox_btn">Get Fox</button>
+  </div>
+</div>
+<div class="results">
+  <div id="food_result" class="result">
+    <p>Random Food Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="food_btn">Get Food</button>
+  </div>
+</div>
+<div class="results">
+  <div id="meme_result" class="result">
+    <p>Random Meme Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="meme_btn">Get Original Meme</button>
+  </div>
+</div>
+<div class="results">
+  <div id="joke_result" class="result">
+    <p>Random Joke Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="joke_btn">Get Joke</button>
+  </div>
+</div>
+<div class="results">
+  <div id="animeQuote_result" class="result">
+    <p>Random Fact Placeholder</p>
+  </div>
+  <div class="buttons">
+    <button id="animeQuote_btn">Get Anime Quote</button>
+  </div>
+</div>
+
+<h3>Чатик:</h3>
+<div class="chatik">
+  <div id="messagesList"></div>
+  <div id="textForm">
+    <form id="messageForm">
+      <label style="color: white "for="nickname">Nickname:
+        <input type="text" name="nickname" placeholder="Example: Anton">
+      </label>
+      <label style="color: white;"  for="message">Message:
+        <textarea placeholder="Your message..." name="message" rows="3"></textarea>
+        {{!-- <input type="text" style=""rows="10" cols="40" name="message" placeholder="..."> --}}
+      </label>
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+{{!-- <form id="messageForm" class="login">
+  <p>
+    <label for="title">Ник:</label>
+    <input type="text" name="title" id="title" placeholder="example: Антон">
+  </p>
+
+  <p>
+    <label for="password">Сообщение:</label>
+    <textarea type="textarea" rows="10" cols="40" name="description" id="description"></textarea>
+  </p>
+
+  <p class="login-submit">
+    <button type="submit" class="login-button">Отправить</button>
+  </p>
+</form> --}}
+<script>
+  const socket = io();
+
+  socket.on('chat:newMessage', (fullMessage) => {
+    const p = document.createElement('p');
+    p.innerHTML = fullMessage;
+    p.classList.add('mText')
+    document.getElementById('messagesList').prepend(p);
+  });
+
+  document.getElementById('messageForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nicknameValue = e.target.nickname.value;
+    const messageValue = e.target.message.value;
+    socket.emit('chat:send', nicknameValue, messageValue);
+  })
+</script>
